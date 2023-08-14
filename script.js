@@ -57,6 +57,14 @@ addBtn.addEventListener('click', function () {
 
 })
 
+const categoryInputDeposit = document.getElementById('category-input-deposit')
+const dateInputDeposit = document.getElementById('date-input-deposit')
+const amountInputDeposit = document.getElementById('amount-input-deposit')
+const addDepositBtn = document.getElementById('add-btn-deposit')
+
+
+
+
 for (const expense of expenses) {
     totalAmount += expense.amount;
     totalAmountCell.textContent = totalAmount;
