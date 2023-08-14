@@ -8,7 +8,8 @@ h2 {
     text-align: center;
 }
 
-.input-section {
+.input-section,
+.input-section-deposit {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,18 +17,40 @@ h2 {
     padding: 10px;
 }
 
-.input-section label {
+.input-section {
+    border: solid 2px red;
+}
+
+.input-section-deposit {
+    margin-top: 10px;
+    border: solid 2px green;
+}
+
+.input-section label,
+.input-section-deposit label {
     font-weight: bold;
     margin-right: 10px;
 }
 
 .input-section input[type="number"],
-.input-section input[type="date"] {
+.input-section-deposit input[type="number"],
+.input-section input[type="date"],
+.input-section-deposit input[type="date"] {
     padding: 5px;
     margin-right: 10px;
 }
 
 .input-section button {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.input-section-deposit button {
     padding: 5px 10px;
     background-color: #4CAF50;
     color: white;
