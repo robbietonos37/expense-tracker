@@ -28,7 +28,7 @@ addBtn.addEventListener('click', function () {
     }
     expenses.push({ category, amount, date });
 
-    totalAmount += amount;
+    totalAmount -= amount;
     totalAmountCell.textContent = totalAmount;
     const newRow = expensesTableBody.insertRow();
 
@@ -55,7 +55,7 @@ addBtn.addEventListener('click', function () {
 
     typeCell.textContent = 'Expense';
     categoryCell.textContent = expense.category;
-    amountCell.textContent = expense.amount;
+    amountCell.textContent = `$${expense.amount}`;
     dateCell.textContent = expense.date;
     deleteCell.appendChild(deleteBtn);
 })
@@ -113,14 +113,3 @@ addDepositBtn.addEventListener('click', function () {
     dateCell.textContent = date;
     deleteCell.appendChild(deleteBtn)
 })
-
-
-for (const expense of expenses) {
-    totalAmount += expense.amount;
-    totalAmountCell.textContent = totalAmount;
-}
-
-for (const deposit of deposits) {
-    totalAmount += deposit.amount;
-    totalAmountCell.textContent = totalAmount;
-}
