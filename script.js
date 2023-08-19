@@ -52,12 +52,12 @@ addBtn.addEventListener('click', function () {
     })
 
     const expense = expenses[expenses.length - 1];
-    typeCell.textContent = 'Expense'
+
+    typeCell.textContent = 'Expense';
     categoryCell.textContent = expense.category;
     amountCell.textContent = expense.amount;
     dateCell.textContent = expense.date;
     deleteCell.appendChild(deleteBtn);
-
 })
 
 const categoryInputDeposit = document.getElementById('category-select-deposit')
@@ -66,7 +66,6 @@ const amountInputDeposit = document.getElementById('amount-input-deposit')
 const addDepositBtn = document.getElementById('add-btn-deposit')
 
 addDepositBtn.addEventListener('click', function () {
-    console.log('wtf')
     const category = categoryInputDeposit.value;
     const amount = Number(amountInputDeposit.value);
     const date = dateInputDeposit.value;
@@ -92,6 +91,9 @@ addDepositBtn.addEventListener('click', function () {
 
     deposits.push({ category, amount, date })
 
+    totalAmount += amount;
+    totalAmountCell.textContent = totalAmount;
+
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add('delete-btn');
     deleteBtn.addEventListener('click', function () {
@@ -103,27 +105,22 @@ addDepositBtn.addEventListener('click', function () {
         expensesTableBody.removeChild(newRow);
     })
 
-    const deposit = deposits[deposits.length - 1]
+    const deposit = deposits[deposits.length - 1];
 
-
-    typeCell.textContent = 'Deposit'
+    typeCell.textContent = 'Deposit';
     categoryCell.textContent = category;
     amountCell.textContent = amount;
     dateCell.textContent = date;
     deleteCell.appendChild(deleteBtn)
-
-    totalAmount += amount;
 })
 
 
 for (const expense of expenses) {
     totalAmount += expense.amount;
     totalAmountCell.textContent = totalAmount;
+}
 
-    const newRow = expensesTableBody.insertRow();
-    const categoryCell = newRow.insertCell();
-    const amountCell = newRow.insertCell();
-    const dateCell = newRow.insertCell();
-    const deleteCell = newRow.insertCell();
-    const deleteBtn = document.createElement('button');
+for (const deposit of deposits) {
+    totalAmount += deposit.amount;
+    totalAmountCell.textContent = totalAmount;
 }
