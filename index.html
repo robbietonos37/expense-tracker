@@ -11,6 +11,7 @@
 
 <body>
     <h1>Expense Tracker App</h1>
+
     <div class="input-section">
         <h2>Expenses</h2>
         <label for="category-select">Category</label>
@@ -26,6 +27,7 @@
         <input type="date" id="date-input">
         <button id="add-btn">Add</button>
     </div>
+
     <div class="input-section-deposit">
         <h2>Deposits</h2>
         <label for="category-select-deposit">Category</label>
@@ -40,8 +42,12 @@
         <input type="date" id="date-input-deposit">
         <button id="add-btn-deposit">Add</button>
     </div>
+
     <div class="expenses-list">
         <h2>Budget Status</h2>
+        <div id="account-balance">
+            Account Balance: <label id="balance"></label>
+        </div>
         <table>
             <thead>
                 <tr>

@@ -9,6 +9,8 @@ const addBtn = document.getElementById('add-btn');
 const expensesTableBody = document.getElementById('expense-table-body');
 const totalAmountCell = document.getElementById('total-amount');
 
+const balance = document.getElementById('balance')
+
 addBtn.addEventListener('click', function () {
     const category = categorySelect.value;
     const amount = Number(amountInput.value);
@@ -29,7 +31,8 @@ addBtn.addEventListener('click', function () {
     expenses.push({ category, amount, date });
 
     totalAmount -= amount;
-    totalAmountCell.textContent = totalAmount;
+    totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
+    balance.textContent = `$${totalAmount.toFixed(2)}`;
     const newRow = expensesTableBody.insertRow();
 
     const typeCell = newRow.insertCell()
@@ -46,7 +49,8 @@ addBtn.addEventListener('click', function () {
         expenses.splice(expenses.indexOf(expense), 1);
 
         totalAmount -= expense.amount;
-        totalAmountCell.textContent = totalAmount;
+        totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
+        balance.textContent = `$${totalAmount.toFixed(2)}`;
 
         expensesTableBody.removeChild(newRow);
     })
@@ -92,7 +96,10 @@ addDepositBtn.addEventListener('click', function () {
     deposits.push({ category, amount, date })
 
     totalAmount += amount;
-    totalAmountCell.textContent = totalAmount;
+    totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
+
+    balance.textContent = `$${totalAmount.toFixed(2)}`;
+
 
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add('delete-btn');
@@ -100,7 +107,8 @@ addDepositBtn.addEventListener('click', function () {
         expenses.splice(deposits.indexOf(deposit), 1);
 
         totalAmount -= deposit.amount;
-        totalAmountCell.textContent = totalAmount;
+        totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
+        balance.textContent = `$${totalAmount.toFixed(2)}`;
 
         expensesTableBody.removeChild(newRow);
     })
@@ -109,7 +117,7 @@ addDepositBtn.addEventListener('click', function () {
 
     typeCell.textContent = 'Deposit';
     categoryCell.textContent = category;
-    amountCell.textContent = amount;
+    amountCell.textContent = `$${amount}`;
     dateCell.textContent = date;
     deleteCell.appendChild(deleteBtn)
 })

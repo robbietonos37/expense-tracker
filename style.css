@@ -61,6 +61,14 @@ h2 {
     cursor: pointer;
 }
 
+#account-balance{
+    margin-bottom: 15px;
+    border: solid 2px #0055CC;
+    width: 350px;
+    font-size: 25px;
+    padding: 15px;
+}
+
 .expenses-list {
     margin: 20px;
 }
@@ -78,7 +86,7 @@ td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #0055CC;
     color: white;
 }
 
