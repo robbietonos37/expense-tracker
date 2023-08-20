@@ -61,7 +61,16 @@ h2 {
     cursor: pointer;
 }
 
-#account-balance{
+#totals {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+#account-balance,
+#total-expenses,
+#total-deposits {
     margin-bottom: 15px;
     border: solid 2px #0055CC;
     width: 350px;

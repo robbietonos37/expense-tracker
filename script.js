@@ -1,6 +1,8 @@
 let expenses = [];
 let deposits = [];
 let totalAmount = 0;
+let totalDeposits = 0;
+let totalExpenses = 0;
 
 const categorySelect = document.getElementById('category-select');
 const amountInput = document.getElementById('amount-input');
@@ -9,7 +11,9 @@ const addBtn = document.getElementById('add-btn');
 const expensesTableBody = document.getElementById('expense-table-body');
 const totalAmountCell = document.getElementById('total-amount');
 
-const balance = document.getElementById('balance')
+const balance = document.getElementById('balance');
+const totalDepositsDisplay = document.getElementById('deposits-total');
+const totalExpensesDisplay = document.getElementById('expenses-total')
 
 addBtn.addEventListener('click', function () {
     const category = categorySelect.value;
@@ -31,9 +35,13 @@ addBtn.addEventListener('click', function () {
     expenses.push({ category, amount, date });
 
     totalAmount -= amount;
+    totalExpenses += amount;
+    console.log(totalExpenses)
     totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
     balance.textContent = `$${totalAmount.toFixed(2)}`;
+    totalExpensesDisplay.textContent = `$${totalExpenses.toFixed(2)}`;
     const newRow = expensesTableBody.insertRow();
+
 
     const typeCell = newRow.insertCell()
     const categoryCell = newRow.insertCell();
