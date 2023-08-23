@@ -13,7 +13,7 @@ const totalAmountCell = document.getElementById('total-amount');
 
 const balance = document.getElementById('balance');
 const totalDepositsDisplay = document.getElementById('deposits-total');
-const totalExpensesDisplay = document.getElementById('expenses-total')
+const totalExpensesDisplay = document.getElementById('expenses-total');
 
 addBtn.addEventListener('click', function () {
     const category = categorySelect.value;
@@ -56,7 +56,9 @@ addBtn.addEventListener('click', function () {
     deleteBtn.addEventListener('click', function () {
         expenses.splice(expenses.indexOf(expense), 1);
 
-        totalAmount -= expense.amount;
+        totalAmount += expense.amount;
+        totalExpenses -= expense.amount;
+        totalExpensesDisplay.textContent = `$${totalExpenses.toFixed(2)}`;
         totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
         balance.textContent = `$${totalAmount.toFixed(2)}`;
 
@@ -106,16 +108,22 @@ addDepositBtn.addEventListener('click', function () {
     totalAmount += amount;
     totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
 
+    totalDeposits += amount;
+    totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
+
     balance.textContent = `$${totalAmount.toFixed(2)}`;
 
 
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add('delete-btn');
     deleteBtn.addEventListener('click', function () {
-        expenses.splice(deposits.indexOf(deposit), 1);
+        deposits.splice(deposits.indexOf(deposit), 1);
 
         totalAmount -= deposit.amount;
+        totalDeposits -= deposit.amount;
+
         totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
+        totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
         balance.textContent = `$${totalAmount.toFixed(2)}`;
 
         expensesTableBody.removeChild(newRow);
