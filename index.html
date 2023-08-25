@@ -45,6 +45,13 @@
 
     <div class="expenses-list">
         <h2>Budget Status</h2>
+        <label for="filter-deposit">Find deposits based on</label>
+        <select id="filter-deposit">
+            <option value="Date">Date</option>
+            <option value="Date">Amount</option>
+            <option value="Date">Type</option>
+            <option value="Date">Date</option>
+        </select>
         <div id="totals">
             <div id="total-deposits">
                 Total Deposits: <label id="deposits-total"></label>
@@ -69,15 +76,7 @@
                 </tr>
             </thead>
             <tbody id="expense-table-body">
-            <tfoot>
-                <tr>
-                    <td>Balance: </td>
-                    <td id="total-amount"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-            </tbody>
+
         </table>
     </div>
     <script src="script.js"></script>
