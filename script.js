@@ -9,7 +9,6 @@ const amountInput = document.getElementById('amount-input');
 const dateInput = document.getElementById('date-input');
 const addBtn = document.getElementById('add-btn');
 const expensesTableBody = document.getElementById('expense-table-body');
-const totalAmountCell = document.getElementById('total-amount');
 
 const balance = document.getElementById('balance');
 const totalDepositsDisplay = document.getElementById('deposits-total');
@@ -37,7 +36,6 @@ addBtn.addEventListener('click', function () {
     totalAmount -= amount;
     totalExpenses += amount;
     console.log(totalExpenses)
-    totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
     balance.textContent = `$${totalAmount.toFixed(2)}`;
     totalExpensesDisplay.textContent = `$${totalExpenses.toFixed(2)}`;
     const newRow = expensesTableBody.insertRow();
@@ -59,7 +57,6 @@ addBtn.addEventListener('click', function () {
         totalAmount += expense.amount;
         totalExpenses -= expense.amount;
         totalExpensesDisplay.textContent = `$${totalExpenses.toFixed(2)}`;
-        totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
         balance.textContent = `$${totalAmount.toFixed(2)}`;
 
         expensesTableBody.removeChild(newRow);
@@ -106,7 +103,6 @@ addDepositBtn.addEventListener('click', function () {
     deposits.push({ category, amount, date })
 
     totalAmount += amount;
-    totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
 
     totalDeposits += amount;
     totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
@@ -122,7 +118,6 @@ addDepositBtn.addEventListener('click', function () {
         totalAmount -= deposit.amount;
         totalDeposits -= deposit.amount;
 
-        totalAmountCell.textContent = `$${totalAmount.toFixed(2)}`;
         totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
         balance.textContent = `$${totalAmount.toFixed(2)}`;
 
