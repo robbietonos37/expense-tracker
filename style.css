@@ -111,3 +111,13 @@ tfoot td {
     border-radius: 4px;
     cursor: pointer;
 }
+
+#table-filters {
+    border: solid 3px red;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 15px;
+}
