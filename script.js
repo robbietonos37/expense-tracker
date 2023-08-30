@@ -132,3 +132,55 @@ addDepositBtn.addEventListener('click', function () {
     dateCell.textContent = date;
     deleteCell.appendChild(deleteBtn)
 })
+
+const searchField = document.querySelector('#expense-deposit-title-search')
+const searchButton = document.querySelector('#search-budget')
+
+searchButton.addEventListener('click', () => {
+    if (searchField.value = ' ') {
+        alert('FUCKING PUT SOMETHING');
+    }
+    else {
+        const filteredDeposits = deposits.filter((deposit) => deposit.category.toLowerCase().includes)
+
+    }
+})
+
+const generateExpensesAndDeposits = (deposits, expenses) => {
+    deposits.foreach((deposit) => {
+        expensesTableBody.insertRow();
+        const typeCell = newRow.insertCell()
+        const categoryCell = newRow.insertCell();
+        const amountCell = newRow.insertCell();
+        const dateCell = newRow.insertCell();
+        const deleteCell = newRow.insertCell()
+        const deleteBtn = document.createElement('button');
+
+        typeCell.textContent = 'Deposit';
+        categoryCell.textContent = deposit.category;
+        amountCell.textContent = `$${deposit.amount}`;
+        dateCell.textContent = deposit.date;
+        deleteCell.appendChild(deleteBtn)
+    })
+
+    expenses.foreach((expense) => {
+        expensesTableBody.insertRow();
+        const typeCell = newRow.insertCell()
+        const categoryCell = newRow.insertCell();
+        const amountCell = newRow.insertCell();
+        const dateCell = newRow.insertCell();
+        const deleteCell = newRow.insertCell()
+        const deleteBtn = document.createElement('button');
+
+        typeCell.textContent = 'Expense';
+        categoryCell.textContent = expense.category;
+        amountCell.textContent = `$${expense.amount}`;
+        dateCell.textContent = expense.date;
+        deleteCell.appendChild(deleteBtn)
+    })
+}
+
+document.querySelector('#filter-deposits-by').addEventListener('change', (e) => {
+    const filteredDeposits = deposits.filter((deposit) => deposit.category === e.target.value)
+    generateExpensesAndDeposits(filteredDeposits, expenses)
+})

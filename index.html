@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <h1>Expense Tracker App</h1>
+    <h1 class="mt-3">Expense Tracker App</h1>
 
-    <div class="input-section">
+    <div class="input-section mt-3">
         <h2>Expenses</h2>
         <label for="category-select">Category</label>
         <select id="category-select">
@@ -30,7 +30,7 @@
         <button id="add-btn">Add</button>
     </div>
 
-    <div class="input-section-deposit">
+    <div class="input-section-deposit mt-3">
         <h2>Deposits</h2>
         <label for="category-select-deposit">Category</label>
         <select id="category-select-deposit">
@@ -45,20 +45,39 @@
         <button id="add-btn-deposit">Add</button>
     </div>
 
+    <div id="deposit-filters" class="mb-3 mt-5">
+        <label for="filter-deposit">Find deposits based on</label>
+        <select id="filter-deposits-by">
+            <option value="">None</option>
+            <option value="Date">Date</option>
+            <option value="Date">Amount</option>
+            <option value="Date">Type</option>
+            <option value="Date">Date</option>
+        </select>
+
+        <label for="expense-deposit-title-search">Search Title: </label>
+        <input type="text" id="expense-deposit-title-search">
+        <button id="search-budget" class="btn btn-primary">Search</button>
+    </div>
+
+    <div id="expense-filters" class="mb-3 mt-5">
+        <label for="expense-deposit">Find deposits based on</label>
+        <select id="expense-deposits-by">
+            <option value="">None</option>
+            <option value="Date">Date</option>
+            <option value="Date">Amount</option>
+            <option value="Date">Type</option>
+            <option value="Date">Date</option>
+        </select>
+
+        <label for="expense-deposit-title-search">Search Title: </label>
+        <input type="text" id="expense-deposit-title-search">
+        <button id="search-budget" class="btn btn-primary">Search</button>
+    </div>
+
     <div class="expenses-list">
         <h2>Budget Status</h2>
-        <div id="table-filters" class="mb-3">
-            <label for="filter-deposit">Find deposits based on</label>
-            <select id="filter-deposit">
-                <option value="Date">Date</option>
-                <option value="Date">Amount</option>
-                <option value="Date">Type</option>
-                <option value="Date">Date</option>
-            </select>
 
-            <label for="expense-deposit-title-search">Search Title: </label>
-            <input type="text" id="expense-deposit-title-search">
-        </div>
         <div id="totals">
             <div id="total-deposits">
                 Total Deposits: <label id="deposits-total"></label>
