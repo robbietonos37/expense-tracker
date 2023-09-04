@@ -14,7 +14,11 @@ const balance = document.getElementById('balance');
 const totalDepositsDisplay = document.getElementById('deposits-total');
 const totalExpensesDisplay = document.getElementById('expenses-total');
 
-addBtn.addEventListener('click', function () {
+const addExpenseForm = document.getElementById("add-expense")
+
+
+addExpenseForm.addEventListener('submit', function (e) {
+    e.preventDefault()
     const category = categorySelect.value;
     const amount = Number(amountInput.value);
     const date = dateInput.value;
@@ -23,7 +27,7 @@ addBtn.addEventListener('click', function () {
         alert('Please select a category');
         return
     }
-    if (isNaN(amount) || amount <= 0) {
+    if (isNaN(Math.floor(amount)) || amount <= 0) {
         alert('Please enter a valid amount');
         return
     }
@@ -69,6 +73,8 @@ addBtn.addEventListener('click', function () {
     amountCell.textContent = `$${expense.amount}`;
     dateCell.textContent = expense.date;
     deleteCell.appendChild(deleteBtn);
+
+    addExpenseForm.reset()
 })
 
 const categoryInputDeposit = document.getElementById('category-select-deposit')
@@ -76,7 +82,10 @@ const dateInputDeposit = document.getElementById('date-input-deposit')
 const amountInputDeposit = document.getElementById('amount-input-deposit')
 const addDepositBtn = document.getElementById('add-btn-deposit')
 
-addDepositBtn.addEventListener('click', function () {
+const addDepositForm = document.getElementById('add-deposit')
+
+addDepositForm.addEventListener('submit', function (e) {
+    e.preventDefault()
     const category = categoryInputDeposit.value;
     const amount = Number(amountInputDeposit.value);
     const date = dateInputDeposit.value;
@@ -131,12 +140,14 @@ addDepositBtn.addEventListener('click', function () {
     amountCell.textContent = `$${amount}`;
     dateCell.textContent = date;
     deleteCell.appendChild(deleteBtn)
+
+    addDepositForm.reset()
 })
 
 const searchField = document.querySelector('#expense-deposit-title-search')
 const searchButton = document.querySelector('#search-budget')
 
-searchButton.addEventListener('click', () => {
+searchButton.addEventListener('click', (e) => {
     if (searchField.value = ' ') {
         alert('FUCKING PUT SOMETHING');
     }
@@ -147,8 +158,8 @@ searchButton.addEventListener('click', () => {
 })
 
 const generateExpensesAndDeposits = (deposits, expenses) => {
-    deposits.foreach((deposit) => {
-        expensesTableBody.insertRow();
+    deposits.forEach((deposit) => {
+        const newRow = expensesTableBody.insertRow();
         const typeCell = newRow.insertCell()
         const categoryCell = newRow.insertCell();
         const amountCell = newRow.insertCell();
@@ -163,7 +174,7 @@ const generateExpensesAndDeposits = (deposits, expenses) => {
         deleteCell.appendChild(deleteBtn)
     })
 
-    expenses.foreach((expense) => {
+    expenses.forEach((expense) => {
         expensesTableBody.insertRow();
         const typeCell = newRow.insertCell()
         const categoryCell = newRow.insertCell();
@@ -180,7 +191,16 @@ const generateExpensesAndDeposits = (deposits, expenses) => {
     })
 }
 
-document.querySelector('#filter-deposits-by').addEventListener('change', (e) => {
+const depositCategoryFilter = document.querySelector('#filter-deposits-category');
+const expenseCategoryFilter = document.querySelector('#filter-expenses-category');
+
+depositCategoryFilter.addEventListener('change', (e) => {
+    console.log(e.target.value)
     const filteredDeposits = deposits.filter((deposit) => deposit.category === e.target.value)
     generateExpensesAndDeposits(filteredDeposits, expenses)
+})
+
+expenseCategoryFilter.addEventListener('change', (e) => {
+    const filteredExpenses = expenses.filter((expense) => expense.category === e.target.value)
+    generateExpensesAndDeposits(deposits, filteredExpenses)
 })

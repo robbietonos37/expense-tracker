@@ -19,6 +19,13 @@ h2 {
     margin-right: 50px;
 }
 
+#add-expense,
+#add-deposit {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
 .input-section {
     border: solid 2px red;
 }
@@ -78,8 +85,9 @@ h2 {
     padding: 15px;
 }
 
-.expenses-list {
+#expenses-list {
     margin: 20px;
+    margin-bottom: 100px;
 }
 
 table {
@@ -117,7 +125,7 @@ tfoot td {
     padding: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     gap: 15px;
     margin-right: 30px;
@@ -129,7 +137,7 @@ tfoot td {
     padding: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     gap: 15px;
     margin-right: 30px;

@@ -16,43 +16,48 @@
 
     <div class="input-section mt-3">
         <h2>Expenses</h2>
-        <label for="category-select">Category</label>
-        <select id="category-select">
-            <option value="Food & Beverage">Food & Beverage</option>
-            <option value="Rent">Rent</option>
-            <option value="Transport">Transport</option>
-            <option value="Relaxing">Relaxing</option>
-        </select>
-        <label for="amount-input">Amount</label>
-        <input type="number" id="amount-input">
-        <label for="date-input">Date</label>
-        <input type="date" id="date-input">
-        <button id="add-btn">Add</button>
+        <form id="add-expense">
+            <label for="category-select">Category</label>
+            <select id="category-select">
+                <option value="Food & Beverage">Food & Beverage</option>
+                <option value="Rent">Rent</option>
+                <option value="Transport">Transport</option>
+                <option value="Relaxing">Relaxing</option>
+            </select>
+            <label for="amount-input">Amount</label>
+            <input type="text" id="amount-input">
+            <label for="date-input">Date</label>
+            <input type="date" id="date-input">
+            <button type="submit" id="add-btn">Add</button>
+        </form>
     </div>
 
-    <div class="input-section-deposit mt-3">
+    <div class="input-section-deposit mt-5">
         <h2>Deposits</h2>
-        <label for="category-select-deposit">Category</label>
-        <select id="category-select-deposit">
-            <option value="Paycheck">Paycheck</option>
-            <option value="Cashback">Cashback</option>
-            <option value="Gift">Gift</option>
-        </select>
-        <label for="amount-input-deposit">Amount</label>
-        <input type="number" id="amount-input-deposit">
-        <label for="date-input-deposit">Date</label>
-        <input type="date" id="date-input-deposit">
-        <button id="add-btn-deposit">Add</button>
+        <form id="add-deposit">
+            <label for="category-select-deposit">Category</label>
+            <select id="category-select-deposit">
+                <option value="Paycheck">Paycheck</option>
+                <option value="Cashback">Cashback</option>
+                <option value="Gift">Gift</option>
+            </select>
+            <label for="amount-input-deposit">Amount</label>
+            <input type="text" id="amount-input-deposit">
+            <label for="date-input-deposit">Date</label>
+            <input type="date" id="date-input-deposit">
+            <button type="submit" id="add-btn-deposit">Add</button>
+        </form>
     </div>
+
 
     <div id="deposit-filters" class="mb-3 mt-5">
         <label for="filter-deposit">Find deposits based on</label>
-        <select id="filter-deposits-by">
+        <label>Category</label>
+        <select id="filter-deposits-category">
             <option value="">None</option>
-            <option value="Date">Date</option>
-            <option value="Date">Amount</option>
-            <option value="Date">Type</option>
-            <option value="Date">Date</option>
+            <option value="Paycheck">Paycheck</option>
+            <option value="Cashback">Cashback</option>
+            <option value="Gift">Gift</option>
         </select>
 
         <label for="expense-deposit-title-search">Search Title: </label>
@@ -61,8 +66,9 @@
     </div>
 
     <div id="expense-filters" class="mb-3 mt-5">
-        <label for="expense-deposit">Find deposits based on</label>
-        <select id="expense-deposits-by">
+        <label for="expense-deposit">Find expenses based on</label>
+        <label>Category</label>
+        <select id="filter-expenses-category">
             <option value="">None</option>
             <option value="Date">Date</option>
             <option value="Date">Amount</option>
@@ -75,7 +81,8 @@
         <button id="search-budget" class="btn btn-primary">Search</button>
     </div>
 
-    <div class="expenses-list">
+
+    <div id="expenses-list">
         <h2>Budget Status</h2>
 
         <div id="totals">
