@@ -42,37 +42,8 @@ addExpenseForm.addEventListener('submit', function (e) {
     console.log(totalExpenses)
     balance.textContent = `$${totalAmount.toFixed(2)}`;
     totalExpensesDisplay.textContent = `$${totalExpenses.toFixed(2)}`;
-    const newRow = expensesTableBody.insertRow();
 
-
-    const typeCell = newRow.insertCell()
-    const categoryCell = newRow.insertCell();
-    const amountCell = newRow.insertCell();
-    const dateCell = newRow.insertCell();
-    const deleteCell = newRow.insertCell();
-    const deleteBtn = document.createElement('button');
-
-
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.classList.add('delete-btn');
-    deleteBtn.addEventListener('click', function () {
-        expenses.splice(expenses.indexOf(expense), 1);
-
-        totalAmount += expense.amount;
-        totalExpenses -= expense.amount;
-        totalExpensesDisplay.textContent = `$${totalExpenses.toFixed(2)}`;
-        balance.textContent = `$${totalAmount.toFixed(2)}`;
-
-        expensesTableBody.removeChild(newRow);
-    })
-
-    const expense = expenses[expenses.length - 1];
-
-    typeCell.textContent = 'Expense';
-    categoryCell.textContent = expense.category;
-    amountCell.textContent = `$${expense.amount}`;
-    dateCell.textContent = expense.date;
-    deleteCell.appendChild(deleteBtn);
+    generateDepositsAndExpenses(deposits, expenses)
 
     addExpenseForm.reset()
 })
@@ -100,46 +71,15 @@ addDepositForm.addEventListener('submit', function (e) {
         alert('Please choose a date');
     }
 
-    const newRow = expensesTableBody.insertRow();
-
-    const typeCell = newRow.insertCell()
-    const categoryCell = newRow.insertCell();
-    const amountCell = newRow.insertCell();
-    const dateCell = newRow.insertCell();
-    const deleteCell = newRow.insertCell()
-    const deleteBtn = document.createElement('button');
-
     deposits.push({ category, amount, date })
 
     totalAmount += amount;
 
     totalDeposits += amount;
+
     totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
 
-    balance.textContent = `$${totalAmount.toFixed(2)}`;
-
-
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.classList.add('delete-btn');
-    deleteBtn.addEventListener('click', function () {
-        deposits.splice(deposits.indexOf(deposit), 1);
-
-        totalAmount -= deposit.amount;
-        totalDeposits -= deposit.amount;
-
-        totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
-        balance.textContent = `$${totalAmount.toFixed(2)}`;
-
-        expensesTableBody.removeChild(newRow);
-    })
-
-    const deposit = deposits[deposits.length - 1];
-
-    typeCell.textContent = 'Deposit';
-    categoryCell.textContent = category;
-    amountCell.textContent = `$${amount}`;
-    dateCell.textContent = date;
-    deleteCell.appendChild(deleteBtn)
+    generateDepositsAndExpenses(deposits, expenses)
 
     addDepositForm.reset()
 })
@@ -157,7 +97,9 @@ searchButton.addEventListener('click', (e) => {
     }
 })
 
-const generateExpensesAndDeposits = (deposits, expenses) => {
+const generateDepositsAndExpenses = (deposits, expenses) => {
+    expensesTableBody.replaceChildren()
+
     deposits.forEach((deposit) => {
         const newRow = expensesTableBody.insertRow();
         const typeCell = newRow.insertCell()
@@ -172,10 +114,25 @@ const generateExpensesAndDeposits = (deposits, expenses) => {
         amountCell.textContent = `$${deposit.amount}`;
         dateCell.textContent = deposit.date;
         deleteCell.appendChild(deleteBtn)
+
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.addEventListener('click', function () {
+            deposits.splice(deposits.indexOf(deposit), 1);
+
+            totalAmount -= deposit.amount;
+            totalDeposits -= deposit.amount;
+
+            totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
+            balance.textContent = `$${totalAmount.toFixed(2)}`;
+
+            expensesTableBody.removeChild(newRow);
+        })
+
     })
 
     expenses.forEach((expense) => {
-        expensesTableBody.insertRow();
+        const newRow = expensesTableBody.insertRow();
         const typeCell = newRow.insertCell()
         const categoryCell = newRow.insertCell();
         const amountCell = newRow.insertCell();
@@ -188,6 +145,20 @@ const generateExpensesAndDeposits = (deposits, expenses) => {
         amountCell.textContent = `$${expense.amount}`;
         dateCell.textContent = expense.date;
         deleteCell.appendChild(deleteBtn)
+
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.addEventListener('click', function () {
+            deposits.splice(deposits.indexOf(deposit), 1);
+
+            totalAmount -= expense.amount;
+            totalDeposits -= expense.amount;
+
+            totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
+            balance.textContent = `$${totalAmount.toFixed(2)}`;
+
+            expensesTableBody.removeChild(newRow);
+        })
     })
 }
 
@@ -197,10 +168,10 @@ const expenseCategoryFilter = document.querySelector('#filter-expenses-category'
 depositCategoryFilter.addEventListener('change', (e) => {
     console.log(e.target.value)
     const filteredDeposits = deposits.filter((deposit) => deposit.category === e.target.value)
-    generateExpensesAndDeposits(filteredDeposits, expenses)
+    generateDepositsAndExpenses(filteredDeposits, [])
 })
 
 expenseCategoryFilter.addEventListener('change', (e) => {
     const filteredExpenses = expenses.filter((expense) => expense.category === e.target.value)
-    generateExpensesAndDeposits(deposits, filteredExpenses)
+    generateDepositsAndExpenses([], filteredExpenses)
 })
