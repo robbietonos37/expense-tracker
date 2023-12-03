@@ -74,9 +74,9 @@ addDepositForm.addEventListener('submit', function (e) {
     deposits.push({ category, amount, date })
 
     totalAmount += amount;
-
     totalDeposits += amount;
 
+    balance.textContent = `$${totalAmount.toFixed(2)}`;
     totalDepositsDisplay.textContent = `$${totalDeposits.toFixed(2)}`;
 
     generateDepositsAndExpenses(deposits, expenses)
